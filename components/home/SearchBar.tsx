@@ -1,10 +1,11 @@
+import { height_button, size_icon } from "@/constants/Theme";
 import * as React from "react";
 import {Image, StyleSheet, Text, TextInput, View} from "react-native";
 
 const SearchBar = () => {
   	
   	return (
-		<View style={{flex: 1, flexDirection: "row", justifyContent: "space-between"}}>
+		<View style={{flexDirection: "row", justifyContent: "space-between"}}>
 			<View style={styles.textField}>
       			<View style={[styles.field, styles.fieldFlexBox]}>
         				<View style={[styles.searchParent, styles.fieldFlexBox]}>
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
 		borderStyle: "solid",
 		borderColor: "#e6e6e6",
 		borderWidth: 1,
-		height: 52,
+		height: height_button,
 		justifyContent: "space-between",
 		paddingHorizontal: 20,
 		paddingVertical: 14,
@@ -62,13 +63,13 @@ const styles = StyleSheet.create({
 		flex: 1
   	},
 	filterIcon: {
-		width: 24,
-		height: 24,
+		width: size_icon,
+		height: size_icon,
 		overflow: "hidden"
 	},
 	buttonFilter: {
-		width: 52,
-		height: 52,
+		width: height_button,
+		height: height_button,
 		borderRadius: 10,
 		backgroundColor: "#1a1a1a",
 		justifyContent: "center",
