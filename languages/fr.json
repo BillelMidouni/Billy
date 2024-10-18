@@ -1,0 +1,40 @@
+{
+    "onbording": {
+        "start": "Commencer",
+        "slogan": "Définissez-vous de manière unique"
+    },
+    "signup": {
+        "title": "Créez un compte",
+        "slogan": "Créez votre compte pour commencer",
+        "nameinput": {
+            "label": "Nom",
+            "placeholder": "Entrez votre nom"
+        },
+        "emailinput": {
+            "label": "Email",
+            "placeholder": "Entrez votre email"
+        },
+        "passwordinput": {
+            "label": "Mot de passe",
+            "placeholder": "Entrez votre mot de passe"
+        },
+        "submit": "Créer un compte",
+        "subit_facebook": "Se connecter avec Facebook",
+        "subit_google": "Se connecter avec Google"
+    },
+    "login": {
+        "title": "Se connecter",
+        "slogan": "C'est un plaisir de vous revoir.",
+        "emailinput": {
+            "label": "Email",
+            "placeholder": "Entrez votre email"
+        },
+        "passwordinput": {
+            "label": "Mot de passe",
+            "placeholder": "Entrez votre mot de passe"
+        },
+        "submit": "Se connecter",
+        "subit_facebook": "Se connecter avec Facebook",
+        "subit_google": "Se connecter avec Google"
+    }
+}

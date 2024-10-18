@@ -1,17 +1,6 @@
 {
-    "special_offer_of_the_week": "Special offer of the week",
-    "special_offer_description": "Discover our special offer of the week with exclusive discounts.",
-    "buy_one_get_one_free": "Buy 1 get 1 free",
-    "buy_one_get_one_free_description": "Buy one and get another one free on selected items.",
-    "end_of_season_sales": "End of season sales",
-    "end_of_season_sales_description": "Enjoy significant discounts on end-of-season items.",
-    "loyalty_offer": "Loyalty offer",
-    "loyalty_offer_description": "Receive loyalty points for every purchase and redeem them for discounts.",
-    "first_order_discount": "First order discount",
-    "first_order_discount_description": "Enjoy 10% off your first order. Offer valid for new customers only.",
-    "free_shipping": "Free shipping",
-    "free_shipping_description": "Enjoy free shipping on all orders over €50.",
-    "summer_sales": "Summer sales",
-    "summer_sales_description": "Up to 50% off on selected items during the summer sales.",
-    "define_yourself": "Define yourself in your unique way."
+    "onbording": {
+        "start": "Commencer",
+        "slogan": "Define yourself in your unique way"
+    }
 }

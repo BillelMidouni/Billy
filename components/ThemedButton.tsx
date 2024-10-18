@@ -1,12 +1,27 @@
 import * as React from "react";
 import {Text, StyleSheet, Image, View, TouchableOpacity} from "react-native";
 
-const ThemedButton = ({title = "", onPress = () => {}}) => {
+type ThemedButtonProps = {
+	title?: string;
+	onPress?: () => void;
+	disable?: boolean;
+	color?: string;
+	containerStyle?: object;
+	textStyles?: object;
+	leftIcon?: React.ReactNode;
+};
+
+
+
+const ThemedButton = ({title, onPress, disable, color="#000", containerStyle, textStyles, leftIcon = <></>}: ThemedButtonProps) => {
   	
   	return (
-        <TouchableOpacity style={styles.button} onPress={() => {onPress()}}>
-            <Text style={styles.button1}>{title}</Text>
-            {/* <Image style={styles.arrowRightIcon} resizeMode="cover" source="arrow-right.png" /> */}
+        <TouchableOpacity 
+			disabled={disable} 
+			style={[styles.button, {backgroundColor: disable ? "#CCCCCC" : color}, containerStyle]} 
+			onPress={onPress}>
+			{leftIcon}
+            <Text style={[styles.button1, textStyles]}>{title}</Text>
         </TouchableOpacity>);
 };
 
@@ -18,21 +33,14 @@ const styles = StyleSheet.create({
 		fontFamily: "General Sans",
 		color: "#fff",
 		textAlign: "left"
-  	},
-  	arrowRightIcon: {
-		width: 24,
-		height: 24,
-		overflow: "hidden"
-  	},
+	},
   	button: {
 		borderRadius: 10,
-		backgroundColor: "#1a1a1a",
 		width: "100%",
 		height: 54,
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "center",
-		paddingHorizontal: 84,
 		paddingVertical: 16,
 		gap: 10,
 		overflow: "hidden"

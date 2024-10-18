@@ -1,10 +1,14 @@
 import * as React from "react";
+import { useTranslation } from "react-i18next";
 import {Text, StyleSheet} from "react-native";
 
 const Slogan = ({style = {}}) => {
+
+    const { t } = useTranslation();
+
   	return (
-    	<Text style={[styles.defineYourselfIn, {...style}]}>Define yourself in your unique way.</Text>)
-    ;
+    	<Text style={[styles.defineYourselfIn, {...style}]}>{t("onbording.slogan")}</Text>
+    );
 };
 
 const styles = StyleSheet.create({

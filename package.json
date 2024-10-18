@@ -38,6 +38,7 @@
     "posthog-react-native": "^3.3.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.53.0",
     "react-i18next": "^15.0.3",
     "react-native": "0.74.5",
     "react-native-animated-spinkit": "^1.5.2",

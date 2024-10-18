@@ -4,25 +4,24 @@ import ThemedInputText from '@/components/ThemedInputText';
 import { ThemedView } from '@/components/ThemedView';
 import { padding_horizontal, size_icon } from '@/constants/Theme';
 import { useTranslation } from 'react-i18next';
-import { Image, ImageBackground, Text, View, StyleSheet, Touchable, TouchableOpacity } from 'react-native';
+import { Image, ImageBackground, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import 'react-native-reanimated';
 import { useForm, Controller, SubmitErrorHandler } from "react-hook-form"
 import { useState } from 'react';
 import { router } from 'expo-router';
 
-type SignUpForm = {
-    name: string;
+type LogInForm = {
     email: string;
     password: string;
 }
 
-export default function SignUpScreen() {
+export default function LogInScreen() {
 
     const { t } = useTranslation();
-    const {control, handleSubmit, watch, formState: {errors}} = useForm<SignUpForm>();
+    const {control, handleSubmit, watch, formState: {errors}} = useForm<LogInForm>();
     const [isSubmitting, setIsSubmitting] = useState(false);  
 
-    const onSubmit = (data: SignUpForm) => {
+    const onSubmit = (data: LogInForm) => {
         console.log(data);
         setIsSubmitting(true);
     }
@@ -36,42 +35,26 @@ export default function SignUpScreen() {
     }
 
     const isDisabled = () => {
-        return (watch("name") === "" || watch("name") === undefined)
-        || (watch("email") === "" || watch("email") === undefined)
+        return (watch("email") === "" || watch("email") === undefined)
         || (watch("password") === "" || watch("password") === undefined)
         || Object.keys(errors).length > 0;
     }
 
     return (
         <ThemedView style={{flex: 1}}>
-            <Header title={t("signup.title")} notification={false} />
-            <Text style={styles.letsCreateYour}>{t("signup.slogan")}</Text>
+            <Header title={t("login.title")} notification={false} />
+            <Text style={styles.letsCreateYour}>{t("login.slogan")}</Text>
 
             <View style={{paddingHorizontal: padding_horizontal, flex: 1, gap: 20}}>
-                <Controller
-                    control={control}
-                    name="name"
-                    rules={{ required: true }}
-                    render={({field: { onChange, onBlur, value }}) => (
-                        <ThemedInputText 
-                            title={t("signup.nameinput.label")} 
-                            placeHolder={t("signup.nameinput.placeholder")} 
-                            status={checkStatus("name")}
-                            onChangeText={value => onChange(value)}
-                            value={value}
-                        />
-                    )}
-                />
-
                 <Controller
                     control={control}
                     name="email"
                     rules={{ required: true }}
                     render={({field: { onChange, onBlur, value }}) => (
                         <ThemedInputText 
-                            title={t("signup.emailinput.label")}
-                            placeHolder={t("signup.emailinput.placeholder")}
-                            status={checkStatus("email")}
+                            title={t("login.emailinput.label")} 
+                            placeHolder={t("login.emailinput.placeholder")} 
+                            status={checkStatus("name")}
                             onChangeText={value => onChange(value)}
                             value={value}
                         />
@@ -84,26 +67,24 @@ export default function SignUpScreen() {
                     rules={{ required: true }}
                     render={({field: { onChange, onBlur, value }}) => (
                         <ThemedInputText 
-                            title={t("signup.passwordinput.label")}
-                            placeHolder={t("signup.passwordinput.placeholder")}
-                            status={checkStatus("password")}
+                            title={t("login.passwordinput.label")}
+                            placeHolder={t("login.passwordinput.placeholder")}
+                            status={checkStatus("email")}
                             onChangeText={value => onChange(value)}
                             value={value}
                         />
                     )}
                 />
 
-                <Text style={styles.bySigningUpContainer}>
-                    <Text style={styles.bySigningUp}>{`By signing up you agree to our `}</Text>
-                    <Text style={styles.terms}>Terms</Text>
-                    <Text style={styles.bySigningUp}>{`, `}</Text>
-                    <Text style={styles.terms}>Privacy Policy</Text>
-                    <Text style={styles.bySigningUp}>{`, and `}</Text>
-                    <Text style={styles.terms}>Cookie Use</Text>
-                </Text>
+                <TouchableOpacity onPress={() => {router.navigate("login")}}>
+                    <Text style={[styles.bySigningUpContainer, {textAlign: "center"}]}>
+                        <Text style={styles.bySigningUp}>{`Forgot your password ? `}</Text>
+                        <Text style={styles.terms}>Reset your password</Text>
+                    </Text>
+                </TouchableOpacity>
 
                 <ThemedButton 
-                    title={t("signup.submit")} 
+                    title={t("login.submit")} 
                     onPress={handleSubmit(onSubmit)}
                     disable={isDisabled()}
                 />
@@ -115,7 +96,7 @@ export default function SignUpScreen() {
                 </View>
 
                 <ThemedButton 
-                    title={t("signup.subit_google")} 
+                    title={t("login.subit_google")} 
                     onPress={handleSubmit(onSubmit)}
                     color={"#FFF"}
                     textStyles={{color: "#000"}}
@@ -124,7 +105,7 @@ export default function SignUpScreen() {
                 />
 
                 <ThemedButton 
-                    title={t("signup.subit_facebook")} 
+                    title={t("login.subit_facebook")} 
                     onPress={handleSubmit(onSubmit)}
                     color={"#1A77F2"}
                     leftIcon={<Image source={require("@/assets/icon/Facebook.png")} style={{width: size_icon, height: size_icon}} />}
@@ -132,16 +113,15 @@ export default function SignUpScreen() {
 
                 <TouchableOpacity onPress={() => {router.navigate("login")}}>
                     <Text style={[styles.bySigningUpContainer, {textAlign: "center"}]}>
-                        <Text style={styles.bySigningUp}>{`Already have an account? `}</Text>
-                        <Text style={styles.terms}>Log In</Text>
+                        <Text style={styles.bySigningUp}>{`Don't have an account ? `}</Text>
+                        <Text style={styles.terms}>Join</Text>
                     </Text>
                 </TouchableOpacity>
-
-                
             </View>
         </ThemedView>
     );
-}
+
+};
 
 const styles = StyleSheet.create({
     createAnAccount: {

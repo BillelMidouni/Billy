@@ -1,23 +1,38 @@
+import { size_icon } from "@/constants/Theme";
 import React, { useState } from "react";
-import { Text, TextInput, View, StyleSheet } from "react-native";
+import { Text, TextInput, View, StyleSheet, Image } from "react-native";
 
 export type ThemedInputTextProps = {
     placeHolder?: string;
     title?: string;
     status: "valid" | "invalid" | "neutral";
-    onChange?: (text: string) => void;
+    onChangeText?: (text: string) => void;
+    value ?: string;
 };
 
-const ThemedInputText = ({placeHolder = "", title = "", status, onChange = () => {} }: ThemedInputTextProps) => {
+const ThemedInputText = ({placeHolder = "", title = "", status, value, onChangeText = () => {} }: ThemedInputTextProps) => {
 
     const [text, setText] = useState("");
+
+    const borderColor = status === "valid" ? "#0C9409" : status === "invalid" ? "#ED1010" : "#e6e6e6";
 
     return (
         <View style={styles.textField}>
             <Text style={[styles.text, styles.textTypo]}>{title}</Text>
-            <View style={[styles.field, styles.fieldFlexBox]}>
+            <View style={[styles.field, styles.fieldFlexBox, {borderColor: borderColor}]}>
                 <View style={[styles.placeholderWrapper, styles.fieldFlexBox]}>
-                    <TextInput style={[styles.placeholder, styles.textTypo]} placeholder={placeHolder}/>
+                    <TextInput 
+                        style={[styles.placeholder, styles.textTypo]} 
+                        placeholder={placeHolder} 
+                        onChangeText={onChangeText}
+                        value={value}
+                    />
+                    {status !== "neutral" && <Image 
+                        source={status === "valid" ? 
+                            require("@/assets/icon/CheckCircle.png") : 
+                            require("@/assets/icon/WarningCircle.png")} 
+                        style={{width: size_icon, height: size_icon}}
+                    />}
                 </View>
             </View>
         </View>
