@@ -19,7 +19,7 @@ export default function Header({title = "", notification = true, goback = false}
       )
       }
       <Text style={styles.title}>{title}</Text>
-      <TouchableOpacity
+      {notification && (<TouchableOpacity
         style={{width: size_icon, height: size_icon}}
         onPress={() => {router.push('notification')}}
         >
@@ -27,7 +27,7 @@ export default function Header({title = "", notification = true, goback = false}
           source={require('@/assets/icon/Bell.png')} 
           style={{width:size_icon, height:size_icon}} 
           />
-      </TouchableOpacity>
+      </TouchableOpacity>)}
      
     </View>
   );

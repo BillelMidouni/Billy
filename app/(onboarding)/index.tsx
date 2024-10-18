@@ -12,7 +12,7 @@ export default function SplashScreen() {
   useEffect(() => {
     setTimeout(() => {
       router.navigate('onboard' as any);
-    }, 3000);
+    }, 1000);
   }, []);
 
   return (

@@ -26,8 +26,8 @@ export default function OnBoardScreen() {
             style={{objectFit: 'cover', height:'70%', width: '90%', position: 'absolute', bottom: 0, right:0}} />
 
         </ImageBackground> 
-        <View style={{width: '100%', height: 120, paddingTop: 20, alignItems: "center", borderTopWidth: 1, borderColor: "#e6e6e6",}}>
-          <ThemedButton title="Commencer" onPress={() => {router.navigate('/(tabs)')}} />
+        <View style={{width: '90%', height: 120, paddingTop: 20, alignItems: "center", borderTopWidth: 1, borderColor: "#e6e6e6",}}>
+          <ThemedButton title="Commencer" onPress={() => {router.navigate('signup')}} />
         </View>
     </ThemedView>
   );

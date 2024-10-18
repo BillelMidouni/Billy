@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Platform, View } from 'react-native';
+import { Image, StyleSheet, Platform, View, ScrollView } from 'react-native';
 
 import { ThemedView } from '@/components/ThemedView';
 import Header from '@/components/home/Header';
@@ -13,12 +13,14 @@ export default function HomeScreen() {
   return (
     <ThemedView style={{flex: 1}}>
       <Header title="Discover" />
-      <View style={{paddingHorizontal: padding_horizontal, flex: 1, gap: 15}}>
-        <SearchBar />
-        <PromotedCarousel promoted={promoted} />
-        <CategoryCarousel category={category} />
-        <PopularProduct />
-      </View>
+      <ScrollView>
+        <View style={{paddingHorizontal: padding_horizontal, flex: 1, gap: 15}}>
+            <SearchBar />
+            <PromotedCarousel promoted={promoted} />
+            <CategoryCarousel category={category} />
+            <PopularProduct />
+        </View>
+      </ScrollView>
     </ThemedView>
   );
 }

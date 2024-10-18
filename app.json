@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "clothes",
-    "slug": "clothes",
+    "name": "solly",
+    "slug": "solly",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -14,7 +14,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.eollys.clothes"
+      "bundleIdentifier": "com.solly.app"
     },
     "android": {
       "adaptiveIcon": {
@@ -28,7 +28,8 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-localization"
     ],
     "experiments": {
       "typedRoutes": true
