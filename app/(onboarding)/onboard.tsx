@@ -20,12 +20,12 @@ export default function OnBoardScreen() {
             <Slogan style={{position: 'absolute', top: 100}} />
 
             <Image 
-                    source={require('@/assets/images/bg-signin-guy.png')} 
-                    style={styles.imageguy} />
+                source={require('@/assets/images/bg-signin-guy.png')} 
+                style={styles.imageguy} />
 
             </ImageBackground> 
             <View style={styles.footer}>
-                <ThemedButton title={t("onbording.start")} onPress={() => {router.navigate('signup')}} />
+                <ThemedButton title={t("onbording.start")} onPress={() => {router.navigate('signup' as any)}} />
             </View>
         </ThemedView>
     );

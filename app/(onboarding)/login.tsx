@@ -4,11 +4,12 @@ import ThemedInputText from '@/components/ThemedInputText';
 import { ThemedView } from '@/components/ThemedView';
 import { padding_horizontal, size_icon } from '@/constants/Theme';
 import { useTranslation } from 'react-i18next';
-import { Image, ImageBackground, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Image, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import 'react-native-reanimated';
-import { useForm, Controller, SubmitErrorHandler } from "react-hook-form"
+import { useForm, Controller } from "react-hook-form"
 import { useState } from 'react';
 import { router } from 'expo-router';
+import { login } from '@/core/services/Auth';
 
 type LogInForm = {
     email: string;
@@ -22,8 +23,16 @@ export default function LogInScreen() {
     const [isSubmitting, setIsSubmitting] = useState(false);  
 
     const onSubmit = (data: LogInForm) => {
-        console.log(data);
         setIsSubmitting(true);
+
+        login(data.email, data.password).then((response) => {
+            setIsSubmitting(false);
+            router.navigate("/(tabs)/(home)")
+            console.log(response);
+        }).catch((error) => {
+            setIsSubmitting(false);
+            console.log(error);
+        });
     }
 
     const checkStatus = (field: string) => {
@@ -72,11 +81,12 @@ export default function LogInScreen() {
                             status={checkStatus("email")}
                             onChangeText={value => onChange(value)}
                             value={value}
+                            secureTextEntry={true}
                         />
                     )}
                 />
 
-                <TouchableOpacity onPress={() => {router.navigate("login")}}>
+                <TouchableOpacity onPress={() => {router.navigate("resetpassword" as any)}}>
                     <Text style={[styles.bySigningUpContainer, {textAlign: "center"}]}>
                         <Text style={styles.bySigningUp}>{`Forgot your password ? `}</Text>
                         <Text style={styles.terms}>Reset your password</Text>
@@ -111,7 +121,7 @@ export default function LogInScreen() {
                     leftIcon={<Image source={require("@/assets/icon/Facebook.png")} style={{width: size_icon, height: size_icon}} />}
                 />
 
-                <TouchableOpacity onPress={() => {router.navigate("login")}}>
+                <TouchableOpacity onPress={() => {router.navigate("signup" as any)}}>
                     <Text style={[styles.bySigningUpContainer, {textAlign: "center"}]}>
                         <Text style={styles.bySigningUp}>{`Don't have an account ? `}</Text>
                         <Text style={styles.terms}>Join</Text>

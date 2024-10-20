@@ -4,11 +4,15 @@ import ThemedInputText from '@/components/ThemedInputText';
 import { ThemedView } from '@/components/ThemedView';
 import { padding_horizontal, size_icon } from '@/constants/Theme';
 import { useTranslation } from 'react-i18next';
-import { Image, ImageBackground, Text, View, StyleSheet, Touchable, TouchableOpacity } from 'react-native';
+import { Image, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import 'react-native-reanimated';
-import { useForm, Controller, SubmitErrorHandler } from "react-hook-form"
+import { useForm, Controller } from "react-hook-form"
 import { useState } from 'react';
 import { router } from 'expo-router';
+import SnackBar from '@/components/SnackBar';
+import { Chase } from 'react-native-animated-spinkit';
+import LoadingOverlay from '@/components/LoadingOverlay';
+import { register } from '@/core/services/Auth';
 
 type SignUpForm = {
     name: string;
@@ -25,6 +29,14 @@ export default function SignUpScreen() {
     const onSubmit = (data: SignUpForm) => {
         console.log(data);
         setIsSubmitting(true);
+        register(data.email, data.password).then((response) => {
+            setIsSubmitting(false);
+            router.navigate("home" as any);
+            console.log(response);
+        }).catch((error) => {
+            setIsSubmitting(false);
+            console.log(error);
+        });
     }
 
     const checkStatus = (field: string) => {
@@ -89,6 +101,7 @@ export default function SignUpScreen() {
                             status={checkStatus("password")}
                             onChangeText={value => onChange(value)}
                             value={value}
+                            secureTextEntry={true}
                         />
                     )}
                 />
@@ -130,15 +143,17 @@ export default function SignUpScreen() {
                     leftIcon={<Image source={require("@/assets/icon/Facebook.png")} style={{width: size_icon, height: size_icon}} />}
                 />
 
-                <TouchableOpacity onPress={() => {router.navigate("login")}}>
+                <TouchableOpacity onPress={() => {router.navigate("login" as any)}}>
                     <Text style={[styles.bySigningUpContainer, {textAlign: "center"}]}>
                         <Text style={styles.bySigningUp}>{`Already have an account? `}</Text>
                         <Text style={styles.terms}>Log In</Text>
                     </Text>
                 </TouchableOpacity>
-
-                
             </View>
+            
+            <LoadingOverlay isVisible={isSubmitting} />
+            <SnackBar message="This is a test message" type="success" duration={5000} />
+
         </ThemedView>
     );
 }
