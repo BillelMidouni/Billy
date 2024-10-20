@@ -45,6 +45,7 @@ target 'Solly' do
   pod 'FirebaseCore', :modular_headers => true
   pod 'FirebaseAuthInterop', :modular_headers => true
   pod 'FirebaseAuth', :modular_headers => true
+  pod 'FirebaseFirestore', :modular_headers => true
   pod 'GoogleUtilities', :modular_headers => true
 
   use_modular_headers!
