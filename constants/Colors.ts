@@ -5,6 +5,8 @@
 
 const tintColorLight = '#0a7ea4';
 const tintColorDark = '#fff';
+const succesColor = '#0C9409';
+const errorColor = '#F44336';
 
 export const Colors = {
   light: {
@@ -24,3 +26,8 @@ export const Colors = {
     tabIconSelected: tintColorDark,
   },
 };
+
+export {
+  succesColor,
+  errorColor
+}
