@@ -9,7 +9,7 @@ import 'react-native-reanimated';
 import { useForm, Controller } from "react-hook-form"
 import { useState } from 'react';
 import { router } from 'expo-router';
-import SnackBar from '@/components/SnackBar';
+import SnackBar, { SnackBarParams } from '@/components/SnackBar';
 import { Chase } from 'react-native-animated-spinkit';
 import LoadingOverlay from '@/components/LoadingOverlay';
 import { register } from '@/core/services/Auth';
@@ -25,17 +25,28 @@ export default function SignUpScreen() {
     const { t } = useTranslation();
     const {control, handleSubmit, watch, formState: {errors}} = useForm<SignUpForm>();
     const [isSubmitting, setIsSubmitting] = useState(false);  
+    const [snackBarProps, setSnackBarProps] = useState<SnackBarParams>({
+        message: "",
+        type: "success",
+        isVisible: false
+    });
 
     const onSubmit = (data: SignUpForm) => {
         console.log(data);
         setIsSubmitting(true);
         register(data.email, data.password).then((response) => {
+            
             setIsSubmitting(false);
-            router.navigate("home" as any);
+            router.navigate("/(tabs)/(home)" as any);
             console.log(response);
         }).catch((error) => {
             setIsSubmitting(false);
             console.log(error);
+            setSnackBarProps({
+                message: "This is a test message",
+                type: "error",
+                isVisible: true
+            });
         });
     }
 
@@ -152,7 +163,15 @@ export default function SignUpScreen() {
             </View>
             
             <LoadingOverlay isVisible={isSubmitting} />
-            <SnackBar message="This is a test message" type="success" duration={5000} />
+            
+            {snackBarProps.isVisible && 
+                <SnackBar 
+                    message={snackBarProps.message}
+                    type={snackBarProps.type}
+                    duration={5000} 
+                    onDismiss={() => {setSnackBarProps({...snackBarProps, isVisible: false})}}
+                    />
+            }
 
         </ThemedView>
     );

@@ -1,20 +1,28 @@
 import { Image, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { ThemedView } from '@/components/ThemedView';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { errorColor, succesColor } from '@/constants/Colors';
+
+export type SnackBarParams = {
+    message: string;
+    type: "success" | "error" | "warning";
+    isVisible: boolean;
+}
 
 type SnackBarProps = {
     message: string;
     type: "success" | "error" | "warning";
     duration: number;
+    onDismiss?: () => void;
 }
 
-export default function SnackBar({message, type, duration}: SnackBarProps) {
+export default function SnackBar({message, type, duration, onDismiss}: SnackBarProps) {
     const [isVisible, setIsVisible] = useState(true);
 
     setTimeout(() => {
         setIsVisible(false);
+        onDismiss && onDismiss();
     }, duration);
 
     return (
