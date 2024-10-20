@@ -1,6 +1,6 @@
 import { size_icon } from "@/constants/Theme";
 import React, { useState } from "react";
-import { Text, TextInput, View, StyleSheet, Image } from "react-native";
+import { Text, TextInput, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 export type ThemedInputTextProps = {
     placeHolder?: string;
@@ -8,11 +8,14 @@ export type ThemedInputTextProps = {
     status: "valid" | "invalid" | "neutral";
     onChangeText?: (text: string) => void;
     value ?: string;
+    secureTextEntry ?: boolean;
 };
 
-const ThemedInputText = ({placeHolder = "", title = "", status, value, onChangeText = () => {} }: ThemedInputTextProps) => {
+const ThemedInputText = ({placeHolder = "", title = "", status, value, onChangeText = () => {}, secureTextEntry = false }: ThemedInputTextProps) => {
 
     const [text, setText] = useState("");
+
+    const [showSecureText, setShowSecureText] = useState(false);
 
     const borderColor = status === "valid" ? "#0C9409" : status === "invalid" ? "#ED1010" : "#e6e6e6";
 
@@ -23,8 +26,10 @@ const ThemedInputText = ({placeHolder = "", title = "", status, value, onChangeT
                 <View style={[styles.placeholderWrapper, styles.fieldFlexBox]}>
                     <TextInput 
                         style={[styles.placeholder, styles.textTypo]} 
-                        placeholder={placeHolder} 
+                        placeholder={placeHolder}
                         onChangeText={onChangeText}
+                        autoCapitalize="none"
+                        secureTextEntry={secureTextEntry && !showSecureText}             
                         value={value}
                     />
                     {status !== "neutral" && <Image 
@@ -33,6 +38,15 @@ const ThemedInputText = ({placeHolder = "", title = "", status, value, onChangeT
                             require("@/assets/icon/WarningCircle.png")} 
                         style={{width: size_icon, height: size_icon}}
                     />}
+                    {secureTextEntry && 
+                    <TouchableOpacity onPress={() => setShowSecureText(!showSecureText)}>
+                        <Image 
+                            source={showSecureText ? 
+                                require("@/assets/icon/Eye.png") : 
+                                require("@/assets/icon/eye-off.png")}
+                            style={{width: size_icon, height: size_icon}}
+                        />
+                    </TouchableOpacity>}
                 </View>
             </View>
         </View>
