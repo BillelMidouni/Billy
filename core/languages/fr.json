@@ -36,5 +36,15 @@
         "submit": "Se connecter",
         "subit_facebook": "Se connecter avec Facebook",
         "subit_google": "Se connecter avec Google"
+    },
+    "resetpassword": {
+        "title": "Réinitialiser le mot de passe",
+        "slogan": "Saisissez votre adresse électronique pour la procédure de vérification. Nous vous enverrons un code à 4 chiffres sur votre email.",
+        "emailinput": {
+            "label": "Email",
+            "placeholder": "Entrez votre email"
+        },
+        "submit_1": "Envoyer le code",
+        "submit_2": "Continuer"
     }
 }

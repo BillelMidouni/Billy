@@ -88,6 +88,15 @@ const promoted = [
     }
 ];
 
-export { promoted };
+const popularProduct = [
+    {
+        id: '0',
+        name: ""
+    }
+];
 
-export { category }
+export { 
+    promoted,
+    category,
+    popularProduct
+};

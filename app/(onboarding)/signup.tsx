@@ -13,6 +13,7 @@ import SnackBar, { SnackBarParams } from '@/components/SnackBar';
 import { Chase } from 'react-native-animated-spinkit';
 import LoadingOverlay from '@/components/LoadingOverlay';
 import { register } from '@/core/services/Auth';
+import { User } from '@/core/models/User';
 
 type SignUpForm = {
     name: string;
@@ -34,8 +35,10 @@ export default function SignUpScreen() {
     const onSubmit = (data: SignUpForm) => {
         console.log(data);
         setIsSubmitting(true);
-        register(data.email, data.password).then((response) => {
-            
+
+        const user = new User(data.email, data.password);
+
+        user.create().then((response) => {
             setIsSubmitting(false);
             router.navigate("/(tabs)/(home)" as any);
             console.log(response);
@@ -48,6 +51,21 @@ export default function SignUpScreen() {
                 isVisible: true
             });
         });
+
+        // register(data.email, data.password).then((response) => {
+            
+        //     setIsSubmitting(false);
+        //     router.navigate("/(tabs)/(home)" as any);
+        //     console.log(response);
+        // }).catch((error) => {
+        //     setIsSubmitting(false);
+        //     console.log(error);
+        //     setSnackBarProps({
+        //         message: "This is a test message",
+        //         type: "error",
+        //         isVisible: true
+        //     });
+        // });
     }
 
     const checkStatus = (field: string) => {

@@ -6,9 +6,11 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 import { PostHogProvider } from 'posthog-react-native'
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { useColorScheme } from '@/core/hooks/useColorScheme';
 
-import '@/i18n'; // This line imports the i18n configuration
+import { useAuth } from '@/core/hooks/useAuth';
+
+import '@/core/i18n/'; // This line imports the i18n configuration
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -18,6 +20,8 @@ export default function RootLayout() {
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
+
+  const { isAuthenticated, user, initializing } = useAuth();
 
   useEffect(() => {
     if (loaded) {
@@ -34,7 +38,7 @@ export default function RootLayout() {
       host: "https://eu.i.posthog.com",
      }}>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-          <Stack initialRouteName='(onboarding)'>
+          <Stack initialRouteName={initializing ? '(onboarding)' : isAuthenticated ? '(tabs)' : 'Auth'}>
             <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             <Stack.Screen name="+not-found" />

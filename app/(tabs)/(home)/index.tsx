@@ -5,7 +5,7 @@ import Header from '@/components/home/Header';
 import SearchBar from '@/components/home/SearchBar';
 import { padding_horizontal } from '@/constants/Theme';
 import CategoryCarousel from '@/components/home/CategoryCarousel';
-import { category, promoted } from '@/data/fake';
+import { category, promoted, popularProduct } from '@/data/fake';
 import PromotedCarousel from '@/components/home/PromotedCarousel';
 import PopularProduct from '@/components/home/PopularProduct';
 
@@ -18,7 +18,7 @@ export default function HomeScreen() {
             <SearchBar />
             <PromotedCarousel promoted={promoted} />
             <CategoryCarousel category={category} />
-            <PopularProduct />
+            {/* <PopularProduct popularProduct={popularProduct} /> */}
         </View>
       </ScrollView>
     </ThemedView>

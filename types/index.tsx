@@ -28,8 +28,15 @@ type PromotionHighlight = {
     deep_link: string;
 };
 
+type PopularProductType = {
+    id: string;
+    title: string;
+    price: string;
+}
+
 export type { 
     Vendor,
     ProductCategory,
-    PromotionHighlight
+    PromotionHighlight,
+    PopularProductType
 };
