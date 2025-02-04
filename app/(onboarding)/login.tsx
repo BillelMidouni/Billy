@@ -7,9 +7,12 @@ import { useTranslation } from 'react-i18next';
 import { Image, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import 'react-native-reanimated';
 import { useForm, Controller } from "react-hook-form"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { router } from 'expo-router';
 import { login } from '@/core/services/Auth';
+import { UserAuth } from '@/types';
+import { useDispatch } from 'react-redux';
+import { authSlice } from '@/core/store/auth';
 
 type LogInForm = {
     email: string;
@@ -21,14 +24,29 @@ export default function LogInScreen() {
     const { t } = useTranslation();
     const {control, handleSubmit, watch, formState: {errors}} = useForm<LogInForm>();
     const [isSubmitting, setIsSubmitting] = useState(false);  
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        onSubmit({email: "lelbi36@gmail.com", password: "Kinnaylelbi06@"});
+    }, []);
 
     const onSubmit = (data: LogInForm) => {
         setIsSubmitting(true);
 
-        login(data.email, data.password).then((response) => {
-            setIsSubmitting(false);
+        login(data.email, data.password).then((response) => {       
+            setIsSubmitting(false);     
+            const user: UserAuth = {
+                id: response.user.uid,
+                email: data.email,
+                password: data.password,
+                username: "",
+                token: "string",
+                role: "string",
+                createdAt: "string",
+                updatedAt: "string",
+            };
+            dispatch(authSlice.actions.login(user));
             router.navigate("/(tabs)/(home)")
-            console.log(response);
         }).catch((error) => {
             setIsSubmitting(false);
             console.log(error);

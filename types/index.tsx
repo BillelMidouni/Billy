@@ -1,8 +1,20 @@
-type Vendor = {
+type UserAuth = {
+    id: string;
+    username: string;
+    email: string;
+    password: string;
+    token: string;
+    role: string;
+    createdAt: string;
+    updatedAt: string;
+};
+
+type Store = {
     id: string;
     name: string;
     description: string;
-    image: string;
+    background_image: string;
+    logo_image: string;
     rating: number;
     location: {
         address: string;
@@ -12,6 +24,7 @@ type Vendor = {
         latitude: number;
         longitude: number;
     };
+    averageTimeDelivery: number;
 };
 
 type ProductCategory = {
@@ -35,7 +48,8 @@ type PopularProductType = {
 }
 
 export type { 
-    Vendor,
+    UserAuth,
+    Store,
     ProductCategory,
     PromotionHighlight,
     PopularProductType

@@ -7,6 +7,8 @@ import ProductCard from '../product/Card';
 
 export default function CategoryCarousel({
     category,
+    showProduct = true,
+    
     }: {
     category: ProductCategory[];
 }) {

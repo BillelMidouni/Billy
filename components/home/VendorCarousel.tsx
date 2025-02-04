@@ -1,15 +1,15 @@
 import React from 'react';
 import { View, Text, FlatList } from 'react-native';
 
-import { Vendor } from '@/types';
+import { Store } from '@/types';
 import { height_button } from '@/constants/Theme';
 
 export default function VendorCarousel({
     vendors,
     onVendorPress,
     }: {
-    vendors: Vendor[];
-    onVendorPress: (vendor: Vendor) => void;
+    vendors: Store[];
+    onVendorPress: (vendor: Store) => void;
 }) {
 
     return (

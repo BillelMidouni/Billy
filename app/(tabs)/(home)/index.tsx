@@ -5,9 +5,11 @@ import Header from '@/components/home/Header';
 import SearchBar from '@/components/home/SearchBar';
 import { padding_horizontal } from '@/constants/Theme';
 import CategoryCarousel from '@/components/home/CategoryCarousel';
-import { category, promoted, popularProduct } from '@/data/fake';
+import { category, promoted, popularProduct, store } from '@/data/fake';
 import PromotedCarousel from '@/components/home/PromotedCarousel';
 import PopularProduct from '@/components/home/PopularProduct';
+import StoreAroundLocation from '@/components/store/StoreAroundLocation';
+import UserHeader from '@/components/home/UserHeader';
 
 export default function HomeScreen() {
   return (
@@ -15,10 +17,11 @@ export default function HomeScreen() {
       <Header title="Discover" />
       <ScrollView>
         <View style={{paddingHorizontal: padding_horizontal, flex: 1, gap: 15}}>
+            <UserHeader />
             <SearchBar />
             <PromotedCarousel promoted={promoted} />
             <CategoryCarousel category={category} />
-            {/* <PopularProduct popularProduct={popularProduct} /> */}
+            <StoreAroundLocation storeAroundLocation={store} />
         </View>
       </ScrollView>
     </ThemedView>

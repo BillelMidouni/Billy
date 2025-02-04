@@ -95,8 +95,97 @@ const popularProduct = [
     }
 ];
 
+const store = [
+    {
+        id: '0',
+        name: 'Zara',
+        description: 'Magasin de vêtements pour hommes, femmes et enfants.',
+        background_image: 'https://billy.s3.fr-par.scw.cloud/fake/background_zara.avif',
+        logo_image: 'https://billy.s3.fr-par.scw.cloud/fake/Zara-LA-MODE.jpg.avif',
+        rating: 4.5,
+        location: {
+            address: '123 Main St',
+            city: 'Paris',
+            state: 'Île-de-France',
+            zip: '75001',
+            latitude: 48.8566,
+            longitude: 2.3522
+        },
+        averageTimeDelivery: 1800,
+    },
+    {
+        id: '1',
+        name: 'H&M',
+        description: 'Magasin de vêtements pour hommes, femmes et enfants.',
+        background_image: 'https://example.com/store1.jpg',
+        logo_image: 'https://billy.s3.fr-par.scw.cloud/fake/H%26M-Logo.svg.png',
+        rating: 4.3,
+        location: {
+            address: '456 Elm St',
+            city: 'Paris',
+            state: 'Île-de-France',
+            zip: '75002',
+            latitude: 48.8566,
+            longitude: 2.3522
+        },
+        averageTimeDelivery: 1200,
+    },
+    {
+        id: '2',
+        name: 'Uniqlo',
+        description: 'Magasin de vêtements pour hommes, femmes et enfants.',
+        background_image: 'https://example.com/store2.jpg',
+        logo_image: 'https://billy.s3.fr-par.scw.cloud/fake/Uniqlo.png',
+        rating: 4.1,
+        location: {
+            address: '789 Oak St',
+            city: 'Paris',
+            state: 'Île-de-France',
+            zip: '75003',
+            latitude: 48.8566,
+            longitude: 2.3522
+        },
+        averageTimeDelivery: 900,
+    },
+    {
+        id: '3',
+        name: 'Mango',
+        description: 'Magasin de vêtements pour hommes, femmes et enfants.',
+        background_image: 'https://example.com/store3.jpg',
+        logo_image: 'https://billy.s3.fr-par.scw.cloud/fake/mango.webp',
+        rating: 4.0,
+        location: {
+            address: '101 Pine St',
+            city: 'Paris',
+            state: 'Île-de-France',
+            zip: '75004',
+            latitude: 48.8566,
+            longitude: 2.3522
+        },
+        averageTimeDelivery: 2400
+    },
+    {
+        id: '4',
+        name: 'Gap',
+        description: 'Magasin de vêtements pour hommes, femmes et enfants.',
+        background_image: 'https://example.com/store4.jpg',
+        logo_image: 'https://billy.s3.fr-par.scw.cloud/fake/Gap_logo.svg.png',
+        rating: 3.9,
+        location: {
+            address: '202 Walnut St',
+            city: 'Paris',
+            state: 'Île-de-France',
+            zip: '75005',
+            latitude: 48.8566,
+            longitude: 2.3522
+        },
+        averageTimeDelivery: 3600
+    }
+]
+
 export { 
     promoted,
     category,
-    popularProduct
+    popularProduct,
+    store
 };

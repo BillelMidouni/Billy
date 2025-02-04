@@ -25,6 +25,24 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="(shop)"
+        options={{
+          title: 'Shop',
+          tabBarIcon: ({ color, focused }) => (
+            <Image source={require('@/assets/icon/Shop.png')} style={{ width: 30, height: 30 }} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="(cart)"
+        options={{
+          title: 'Cart',
+          tabBarIcon: ({ color, focused }) => (
+            <Image source={require('@/assets/icon/Cart.png')} style={{ width: 30, height: 30 }} />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
