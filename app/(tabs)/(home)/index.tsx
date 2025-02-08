@@ -2,7 +2,7 @@ import { Image, StyleSheet, Platform, View, ScrollView } from 'react-native';
 
 import { ThemedView } from '@/components/ThemedView';
 import Header from '@/components/home/Header';
-import SearchBar from '@/components/home/SearchBar';
+import SearchBar from '@/components/SearchBar';
 import { padding_horizontal } from '@/constants/Theme';
 import CategoryCarousel from '@/components/home/CategoryCarousel';
 import { category, promoted, popularProduct, store } from '@/data/fake';

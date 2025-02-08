@@ -26,6 +26,15 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="(search)"
+        options={{
+          title: 'Search',
+          tabBarIcon: ({ color, focused }) => (
+            <Image source={require('@/assets/icon/Search.png')} style={{ width: 30, height: 30 }} />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="(shop)"
         options={{
           title: 'Shop',

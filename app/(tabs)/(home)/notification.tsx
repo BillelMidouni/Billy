@@ -8,54 +8,54 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Reanimated, { SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 
 const notifications = [
-  // {
-  //   id: "1",
-  //   date: "Today",
-  //   items: [
-  //     {
-  //       id: "1-1",
-  //       icon: "pricetag-outline",
-  //       title: "30% Special Discount!",
-  //       description: "Special promotion only valid today."
-  //     }
-  //   ]
-  // },
-  // {
-  //   id: "2",
-  //   date: "Yesterday",
-  //   items: [
-  //     {
-  //       id: "2-1",
-  //       icon: "wallet-outline",
-  //       title: "Top Up E-wallet Successfully!",
-  //       description: "You have top up your e-wallet."
-  //     },
-  //     {
-  //       id: "2-2",
-  //       icon: "location-outline",
-  //       title: "New Service Available!",
-  //       description: "Now you can track order in real-time."
-  //     }
-  //   ]
-  // },
-  // {
-  //   id: "3",
-  //   date: "June 7, 2023",
-  //   items: [
-  //     {
-  //       id: "3-1",
-  //       icon: "card-outline",
-  //       title: "Credit Card Connected!",
-  //       description: "Credit card has been linked."
-  //     },
-  //     {
-  //       id: "3-2",
-  //       icon: "person-outline",
-  //       title: "Account Setup Successfully!",
-  //       description: "Your account has been created."
-  //     }
-  //   ]
-  // }
+  {
+    id: "1",
+    date: "Today",
+    items: [
+      {
+        id: "1-1",
+        icon: "pricetag-outline",
+        title: "30% Special Discount!",
+        description: "Special promotion only valid today."
+      }
+    ]
+  },
+  {
+    id: "2",
+    date: "Yesterday",
+    items: [
+      {
+        id: "2-1",
+        icon: "wallet-outline",
+        title: "Top Up E-wallet Successfully!",
+        description: "You have top up your e-wallet."
+      },
+      {
+        id: "2-2",
+        icon: "location-outline",
+        title: "New Service Available!",
+        description: "Now you can track order in real-time."
+      }
+    ]
+  },
+  {
+    id: "3",
+    date: "June 7, 2023",
+    items: [
+      {
+        id: "3-1",
+        icon: "card-outline",
+        title: "Credit Card Connected!",
+        description: "Credit card has been linked."
+      },
+      {
+        id: "3-2",
+        icon: "person-outline",
+        title: "Account Setup Successfully!",
+        description: "Your account has been created."
+      }
+    ]
+  }
 ];
 
 export default function NotificationScreen() {

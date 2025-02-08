@@ -37,8 +37,8 @@ const styles = StyleSheet.create({
   	},
   	profileIcon: {
         borderRadius: 100,
-        width: 32,
-        height: 32,
+        width: 40,
+        height: 40,
         overflow: "hidden"
   	},
   	customer: {

@@ -1,6 +1,6 @@
 import CategoryCarousel from "@/components/home/CategoryCarousel";
 import Header from "@/components/home/Header";
-import SearchBar from "@/components/home/SearchBar";
+import SearchBar from "@/components/SearchBar";
 import { ThemedView } from "@/components/ThemedView";
 import { padding_horizontal } from "@/constants/Theme";
 import { category } from "@/data/fake";

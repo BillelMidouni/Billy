@@ -1,24 +1,40 @@
 import { height_button, size_icon } from "@/constants/Theme";
 import * as React from "react";
-import {Image, StyleSheet, Text, TextInput, View} from "react-native";
+import {Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+import { useGlobalModal } from "@/components/modal/ModalProvider";
+import FilterModal from "./modal/FilterModal";
 
-const SearchBar = () => {
-  	
+const SearchBar = () => {  	
+
+	const { openModal } = useGlobalModal();
+
   	return (
 		<View style={{flexDirection: "row", justifyContent: "space-between"}}>
 			<View style={styles.textField}>
       			<View style={[styles.field, styles.fieldFlexBox]}>
         				<View style={[styles.searchParent, styles.fieldFlexBox]}>
-          					<Image style={styles.searchIcon} resizeMode="cover" source={require("@/assets/icon/Search.png")} />
-          					<TextInput style={styles.placeholder} placeholder="Search for clothes..."></TextInput>
+							<TouchableOpacity>
+          						<Image style={styles.searchIcon} resizeMode="cover" source={require("@/assets/icon/Search.png")} />
+							</TouchableOpacity>
+          					<TextInput 
+								style={styles.placeholder} 
+								placeholder="Search for clothes..."
+								returnKeyType="search"
+								></TextInput>
         				</View>
-        				<Image style={styles.searchIcon} resizeMode="cover" source={require("@/assets/icon/Mic.png")} />
+						<TouchableOpacity>
+        					<Image style={styles.searchIcon} resizeMode="cover" source={require("@/assets/icon/Mic.png")} />
+						</TouchableOpacity>
       			</View>
 
     		</View>
-			<View style={styles.buttonFilter}>
+			<TouchableOpacity 
+				style={styles.buttonFilter} 
+				onPress={() => {
+					openModal("Filtres", <FilterModal/>, true);
+				}}>
 				<Image style={styles.filterIcon} resizeMode="cover" source={require("@/assets/icon/Filter.png")} />
-			</View>
+			</TouchableOpacity>
 		</View>
     );
 };

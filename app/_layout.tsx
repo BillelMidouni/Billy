@@ -15,6 +15,7 @@ import '@/core/i18n/'; // This line imports the i18n configuration
 import { login } from '@/core/services/Auth';
 import { authSlice } from '@/core/store/auth';
 import { UserAuth } from '@/types';
+import { ModalProvider } from '@/components/modal/ModalProvider';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -65,11 +66,13 @@ export default function RootLayout() {
      }}>
       <Provider store={store}>
         <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+          <ModalProvider>
             <Stack initialRouteName={"(tabs)"}>
-              <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
-              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-              <Stack.Screen name="+not-found" />
+                <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                <Stack.Screen name="+not-found" />
             </Stack>
+          </ModalProvider>
         </ThemeProvider>
       </Provider>
     </PostHogProvider>
