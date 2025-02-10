@@ -1,19 +1,26 @@
 import * as React from "react";
-import {Text, StyleSheet, View, Image} from "react-native";
+import {Text, StyleSheet, View, Image, TouchableOpacity} from "react-native";
+import { router } from "expo-router";
 
 export default function UserHeader() {
   	
   	return (
-    		<View style={styles.customer}>
-      			<View style={styles.text}>
-        				<Text style={styles.helloWelcome}>Hello, Welcome 👋</Text>
-        				<Text style={styles.albertStevano}>Billel Midouni</Text>
-      			</View>
-      			<Image 
-                    style={styles.profileIcon} 
-                    resizeMode="cover" 
-                    source={require("@/assets/images/profile_fake.png")}/>
-    		</View>);
+        <View style={styles.customer}>
+                <View style={styles.text}>
+                    <Text style={styles.helloWelcome}>Hello, Welcome 👋</Text>
+                    <Text style={styles.albertStevano}>Billel Midouni</Text>
+                </View>
+                <TouchableOpacity
+                    onPress={() => {
+                        router.push("(account)");
+                    }}>
+                    <Image 
+                        style={styles.profileIcon} 
+                        resizeMode="cover" 
+                        source={require("@/assets/images/profile_fake.png")}/>
+                </TouchableOpacity>
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
