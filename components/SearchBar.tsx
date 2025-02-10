@@ -31,7 +31,7 @@ const SearchBar = () => {
 			<TouchableOpacity 
 				style={styles.buttonFilter} 
 				onPress={() => {
-					openModal("Filtres", <FilterModal/>, true);
+					openModal("Filtres", <FilterModal onSearch={() => {}}/>, true);
 				}}>
 				<Image style={styles.filterIcon} resizeMode="cover" source={require("@/assets/icon/Filter.png")} />
 			</TouchableOpacity>

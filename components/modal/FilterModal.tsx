@@ -9,30 +9,35 @@ import {
 import Slider from "@react-native-community/slider";
 import { Ionicons } from "@expo/vector-icons";
 
+import ThemedButton from "../ThemedButton";
+
+
+
 interface FilterModalProps {
-  onClose: () => void;
+  onSearch: () => void;
+  onClose?: () => void;
 }
+
+
 
 const sortOptions = ["Relevance", "Price: Low - High", "Price: High - Low"];
 
-const FilterModal: React.FC<FilterModalProps> = ({ onClose }) => {
+const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
+
+const FilterModal: React.FC<FilterModalProps> = ({ onSearch, onClose = () => {}}) => {
   const [selectedSort, setSelectedSort] = useState("Relevance");
   const [priceRange, setPriceRange] = useState(19);
   const [selectedSize, setSelectedSize] = useState("L");
 
+  const [showSizeSelector, setShowSizeSelector] = useState(false);
+
   return (
-    <View style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.title}>Filters</Text>
-        <TouchableOpacity onPress={onClose}>
-          <Ionicons name="close" size={24} color="black" />
-        </TouchableOpacity>
-      </View>
-      
+    <View style={styles.container}>  
       {/* Sort By */}
       <Text style={styles.sectionTitle}>Sort By</Text>
+      
       <FlatList
+        style={{ height: 40}}
         data={sortOptions}
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -56,8 +61,10 @@ const FilterModal: React.FC<FilterModalProps> = ({ onClose }) => {
           </TouchableOpacity>
         )}
       />
+
+      <View style={styles.divider} />
       
-      {/* Price Range */}
+      {/* Price Range*/}
       <Text style={styles.sectionTitle}>Price</Text>
       <View style={styles.sliderContainer}>
         <Slider
@@ -73,18 +80,42 @@ const FilterModal: React.FC<FilterModalProps> = ({ onClose }) => {
         />
         <Text style={styles.priceText}>$0 - ${priceRange}</Text>
       </View>
+
+      <View style={styles.divider} />
       
       {/* Size Selector */}
-      <Text style={styles.sectionTitle}>Size</Text>
-      <TouchableOpacity style={styles.sizeSelector}>
-        <Text style={styles.sizeText}>{selectedSize}</Text>
-        <Ionicons name="chevron-down" size={20} color="black" />
-      </TouchableOpacity>
+      
+        <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
+          <Text style={styles.sectionTitle}>Size</Text>
+          {!showSizeSelector ? <TouchableOpacity 
+              style={styles.sizeSelector}
+              onPress={() => setShowSizeSelector(true)}>
+              <Text style={styles.sizeText}>{selectedSize}</Text>
+              <Ionicons name="chevron-down" size={20} color="black" />
+            </TouchableOpacity>
+            :
+            <FlatList
+              style={{height: 40}}
+              data={sizes}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={(item) => item}
+              renderItem={({ item }) => (
+                <TouchableOpacity 
+                  style={[styles.sizeSelector, {
+                    borderWidth: 1, borderRadius: 10, borderColor: "#ccc", width: 40, paddingHorizontal: 0, marginHorizontal: 10}]}
+                  onPress={() => {
+                    setSelectedSize(item);
+                    setShowSizeSelector(false);
+                  }}>
+                  <Text style={styles.sizeText}>{item}</Text>
+                </TouchableOpacity>
+              )}/>
+          }
+        </View> 
       
       {/* Apply Filters Button */}
-      <TouchableOpacity style={styles.applyButton}>
-        <Text style={styles.applyButtonText}>Apply Filters</Text>
-      </TouchableOpacity>
+      <ThemedButton title="Apply Filters" onPress={onClose} />
     </View>
   );
 };
@@ -92,19 +123,6 @@ const FilterModal: React.FC<FilterModalProps> = ({ onClose }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    padding: 20,
-  },
-  header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 20,
-  },
-  title: {
-    fontSize: 22,
-    fontWeight: "bold",
   },
   sectionTitle: {
     fontSize: 16,
@@ -112,7 +130,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   sortButton: {
-    paddingVertical: 10,
+    justifyContent: "center",
     paddingHorizontal: 15,
     borderRadius: 10,
     borderWidth: 1,
@@ -132,7 +150,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginBottom: 20,
   },
   priceText: {
     fontSize: 14,
@@ -141,12 +158,10 @@ const styles = StyleSheet.create({
   sizeSelector: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
-    padding: 15,
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 10,
-    marginBottom: 20,
+    justifyContent: "space-evenly",
+    height: 40,
+    paddingHorizontal: 15,
+    width: 70,
   },
   sizeText: {
     fontSize: 16,
@@ -161,6 +176,14 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 16,
     fontWeight: "bold",
+  },
+  divider: {
+    borderStyle: "solid",
+    borderColor: "#e6e6e6",
+    borderTopWidth: 1,
+    width: "100%",
+    height: 1,
+    marginVertical: 20,
   },
 });
 

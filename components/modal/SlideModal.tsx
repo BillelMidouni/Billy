@@ -23,7 +23,12 @@ const SlideModal: React.FC<AppModalProps> = ({ isVisible, overlay, title, childr
                     </TouchableOpacity>
                 </View>
                 <View style={styles.divider} />
-                <View style={styles.content}>{children}</View>
+                <View style={styles.content}>
+                {children &&
+                  React.Children.map(children, (child) =>
+                    React.isValidElement(child) ? React.cloneElement(child as React.ReactElement<any>, { onClose }) : child
+                  )}
+                </View>
             </View>
         </View>
     </Modal>
@@ -41,7 +46,7 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     width: "100%",
-    height: 400,
+    height: 450,
     backgroundColor: "white",
     borderRadius: 20,
     padding: 20,
@@ -81,11 +86,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   content: {
+    width: "100%",
+    height: "100%",
     marginBottom: 20,
   },
   closeButton: {
-    width: size_icon_small,
-    height: size_icon_small,
+    width: 20,
+    height: 20,
   },
   closeText: {
     color: "white",
