@@ -158,6 +158,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 5
   },
+  date:{
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "gray",
+    marginTop: 20
+  },
   notificationItem: {
     flexDirection: "row",
     alignItems: "center",
@@ -180,5 +186,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "gray",
     marginTop: 2
+  },
+  deleteContainer: {
+    backgroundColor: "red",
+    justifyContent: "center",
+    alignItems: "flex-end",
+    height: "100%"
+  },
+  deleteButton: {
+    padding: 20
   }
 });

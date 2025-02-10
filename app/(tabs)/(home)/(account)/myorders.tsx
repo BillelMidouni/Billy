@@ -1,7 +1,7 @@
 import Header from "@/components/home/Header";
 import { useGlobalModal } from "@/components/modal/ModalProvider";
 import { ThemedView } from "@/components/ThemedView";
-import order, { order_completed, order_ongoing } from "@/data/fake_order";
+import { order_completed, order_ongoing } from "@/data/fake_order";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
