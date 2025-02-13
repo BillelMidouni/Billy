@@ -3,6 +3,7 @@ import { useGlobalModal } from "@/components/modal/ModalProvider";
 import { ThemedView } from "@/components/ThemedView";
 import { order_completed, order_ongoing } from "@/data/fake_order";
 import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
 import { useState } from "react";
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
@@ -47,8 +48,6 @@ interface Order {
 export default function MyOrdersScreen() {
     const [selectedTab, setSelectedTab] = useState<"Ongoing" | "Completed">("Ongoing");
     const orders = selectedTab === "Ongoing" ? order_ongoing : [];
-
-    const { openModal } = useGlobalModal();
 
     return(
         <ThemedView style={{flex: 1}}>
@@ -101,8 +100,10 @@ export default function MyOrdersScreen() {
                                 <Text style={styles.productPrice}>${item.product.variants[0].price}</Text>
 
                                 <View style={styles.orderFooter}>
-                                    <TouchableOpacity style={styles.trackButton}>
-                                    <Text style={styles.trackButtonText}>Track Order</Text>
+                                    <TouchableOpacity 
+                                        style={styles.trackButton}
+                                        onPress={() => {router.push({ pathname: "/(account)/trackorder", params: { order: item} })}}>
+                                        <Text style={styles.trackButtonText}>Track Order</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>

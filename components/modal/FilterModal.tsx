@@ -19,7 +19,6 @@ interface FilterModalProps {
 }
 
 
-
 const sortOptions = ["Relevance", "Price: Low - High", "Price: High - Low"];
 
 const sizes = ["XS", "S", "M", "L", "XL", "XXL"];

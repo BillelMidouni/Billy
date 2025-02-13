@@ -72,7 +72,7 @@ export default function LogInScreen() {
             <Header title={t("login.title")} notification={false} />
             <Text style={styles.letsCreateYour}>{t("login.slogan")}</Text>
 
-            <View style={{paddingHorizontal: padding_horizontal, flex: 1, gap: 20}}>
+            <View style={{paddingHorizontal: padding_horizontal, flex: 1, gap: 20, justifyContent: "center"}}>
                 <Controller
                     control={control}
                     name="email"

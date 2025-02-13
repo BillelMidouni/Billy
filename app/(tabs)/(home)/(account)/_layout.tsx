@@ -6,6 +6,7 @@ export default function AccountLayout() {
       <Stack initialRouteName="index">
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="myorders" options={{ headerShown: false }} />
+        <Stack.Screen name="trackorder" options={{ headerShown: false }} />
       </Stack>
   );
 }

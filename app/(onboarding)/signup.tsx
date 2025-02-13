@@ -73,7 +73,7 @@ export default function SignUpScreen() {
             <Header title={t("signup.title")} notification={false} />
             <Text style={styles.letsCreateYour}>{t("signup.slogan")}</Text>
 
-            <View style={{paddingHorizontal: padding_horizontal, flex: 1, gap: 20}}>
+            <View style={{paddingHorizontal: padding_horizontal, flex: 1, gap: 20, justifyContent: "center"}}>
                 <Controller
                     control={control}
                     name="name"

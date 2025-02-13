@@ -7,6 +7,7 @@ export default function Header({
   title = "",
   notification = true,
   goback = false,
+  goBackCallback = () => {},
 }) {
   return (
     <View
@@ -23,6 +24,7 @@ export default function Header({
           style={{ width: size_icon, height: size_icon }}
           onPress={() => {
             router.back();
+            goBackCallback();
           }}
         >
           <Image

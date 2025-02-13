@@ -1,6 +1,8 @@
 import { size_icon, size_icon_small } from "@/constants/Theme";
-import React from "react";
+import { use } from "i18next";
+import React, { useEffect } from "react";
 import { Modal, View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import Animated, { useSharedValue, withSpring } from 'react-native-reanimated';
 
 interface AppModalProps {
   isVisible: boolean;
@@ -11,38 +13,90 @@ interface AppModalProps {
 }
 
 const SlideModal: React.FC<AppModalProps> = ({ isVisible, overlay, title, children, onClose }) => {
-  return (
-    <Modal transparent visible={isVisible} onRequestClose={onClose}>
-        <View style={[styles.overlay, { backgroundColor: overlay ? "rgba(0, 0, 0, 0.2)" : "transparent" }]}>
-            <View style={styles.modalContainer}>
-                <View style={styles.bar}/>
-                <View style={styles.header}>
-                    {title && <Text style={styles.title}>{title}</Text>}
-                    <TouchableOpacity onPress={onClose}>
-                      <Image style={styles.closeButton} resizeMode="cover" source={require("@/assets/icon/Close.png")} />
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.divider} />
-                <View style={styles.content}>
-                {children &&
-                  React.Children.map(children, (child) =>
-                    React.isValidElement(child) ? React.cloneElement(child as React.ReactElement<any>, { onClose }) : child
-                  )}
-                </View>
-            </View>
+  const translateY = useSharedValue(0);
+
+  useEffect(() => {
+    translateY.value = withSpring(
+      isVisible ? 0 : 450, 
+      {
+        duration: 500,
+        dampingRatio: 1,
+        stiffness: 100,
+        overshootClamping: false,
+        restDisplacementThreshold: 0.01,
+        restSpeedThreshold: 2,
+      });
+  }, [isVisible]);
+
+  const close_with_animation = () => {
+    new Promise((resolve) => {
+      translateY.value = withSpring(900, {
+        duration: 1000,
+        dampingRatio: 1,
+        stiffness: 100,
+        overshootClamping: false,
+        restDisplacementThreshold: 0.01,
+        restSpeedThreshold: 2,
+      });
+      setTimeout(() => {
+        resolve(true);
+      }, 500);
+    }).then(() => {
+      onClose();
+    });
+  }
+
+  const render_modal = () => {
+    return(
+      <View style={styles.modalContainer}>
+        <View style={styles.bar}/>
+        <View style={styles.header}>
+            {title && <Text style={styles.title}>{title}</Text>}
+            <TouchableOpacity onPress={close_with_animation}>
+              <Image style={styles.closeButton} resizeMode="cover" source={require("@/assets/icon/Close.png")} />
+            </TouchableOpacity>
         </View>
-    </Modal>
+        <View style={styles.divider} />
+        <View style={styles.content}>
+        {children &&
+          React.Children.map(children, (child) =>
+            React.isValidElement(child) ? React.cloneElement(child as React.ReactElement<any>, { onClose: close_with_animation }) : child
+          )}
+        </View>
+      </View>
+    )
+  }
+
+  if (overlay){
+    return(
+      isVisible && 
+      <Animated.View 
+        style={[
+          {backgroundColor: overlay ? "rgba(0, 0, 0, 0.2)" : "transparent", ...styles.overlay},
+          {transform: [{translateY: translateY}]}
+          ]}>
+       {render_modal()}
+      </Animated.View>
+    );
+  }
+
+  return (
+    isVisible && 
+    <Animated.View
+      style={[
+        {transform: [{translateY: translateY}]},
+      ]}>
+      {render_modal()}
+    </Animated.View>
   );
 };
 
 const styles = StyleSheet.create({
   overlay: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.2)",
-    width: "100%",
-    height: "100%",
+    flex: 1, 
+    position: "absolute",
+    width: "100%", 
+    height: "100%"
   },
   modalContainer: {
     width: "100%",
