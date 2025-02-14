@@ -3,19 +3,19 @@ import React, { createContext, useContext } from "react";
 import SlideModal from "./SlideModal";
 
 interface ModalContextProps {
-  openModal: (title: string, content: React.ReactNode, overlay: boolean) => void;
+  openModal: (title: string, content: React.ReactNode, overlay: boolean, callbackOnClose: () => void) => void;
   closeModal: () => void;
 }
 
 const ModalContext = createContext<ModalContextProps | undefined>(undefined);
 
 export const ModalProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { isVisible, title, content, overlay, openModal, closeModal } = useModal();
+  const { isVisible, title, content, overlay, callbackOnClose, openModal, closeModal } = useModal();
 
   return (
     <ModalContext.Provider value={{ openModal, closeModal }}>
       {children}
-      <SlideModal isVisible={isVisible} overlay={overlay} title={title} onClose={closeModal}>
+      <SlideModal isVisible={isVisible} overlay={overlay} title={title} onClose={() => closeModal()} callbackOnClose={callbackOnClose as () => void}>
         {content}
       </SlideModal>
     </ModalContext.Provider>

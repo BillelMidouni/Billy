@@ -1,3 +1,4 @@
+import { time_animation } from "@/constants/animation";
 import { size_icon, size_icon_small } from "@/constants/Theme";
 import { use } from "i18next";
 import React, { useEffect } from "react";
@@ -9,10 +10,11 @@ interface AppModalProps {
   title?: string;
   overlay?: boolean;
   children?: React.ReactNode;
+  callbackOnClose: () => void;
   onClose: () => void;
 }
 
-const SlideModal: React.FC<AppModalProps> = ({ isVisible, overlay, title, children, onClose }) => {
+const SlideModal: React.FC<AppModalProps> = ({ isVisible, overlay, title, children, callbackOnClose, onClose }) => {
   const translateY = useSharedValue(0);
 
   useEffect(() => {
@@ -29,6 +31,7 @@ const SlideModal: React.FC<AppModalProps> = ({ isVisible, overlay, title, childr
   }, [isVisible]);
 
   const close_with_animation = () => {
+    callbackOnClose();
     new Promise((resolve) => {
       translateY.value = withSpring(900, {
         duration: 1000,
@@ -40,7 +43,7 @@ const SlideModal: React.FC<AppModalProps> = ({ isVisible, overlay, title, childr
       });
       setTimeout(() => {
         resolve(true);
-      }, 500);
+      }, time_animation);
     }).then(() => {
       onClose();
     });

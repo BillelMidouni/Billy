@@ -49,6 +49,11 @@ const order = [{
         currency: "USD",
     },
     status: "Delivered",
+    status_history:[
+        { "status": "Picked", "address": "16 Rr 2, Ketchikan, Alaska 99901, USA" },
+        { "status": "In Transit", "address": "2417 Tongass Ave #111, Ketchikan, Alaska 99901" },
+        { "status": "Delivered", "address": "925 S Chugach St #APT 10, Alaska 99645" }
+    ]
 },
 {
     id: "3",
@@ -75,6 +80,12 @@ const order = [{
         currency: "USD",
     },
     status: "Processing",
+    status_history:[
+        { status: "Packing", address: "2336 Jack Warren Rd, Delta Junction, Alaska" },
+        { status: "Picked", address: "2417 Tongass Ave #111, Ketchikan, Alaska 99901" },
+        { status: "In Transit", address: "16 Rr 2, Ketchikan, Alaska 99901, USA" },
+        { status: "Delivered", address: "925 S Chugach St #APT 10, Alaska 99645" },
+    ]
 },
 {
     id: "4",

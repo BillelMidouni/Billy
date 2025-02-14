@@ -1,17 +1,11 @@
+import { DeliveryHistory } from "@/core/services/Order";
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-
-const orderStatus = [
-    { status: "Packing", address: "2336 Jack Warren Rd, Delta Junction, Alaska" },
-    { status: "Picked", address: "2417 Tongass Ave #111, Ketchikan, Alaska 99901" },
-    { status: "In Transit", address: "16 Rr 2, Ketchikan, Alaska 99901, USA" },
-    { status: "Delivered", address: "925 S Chugach St #APT 10, Alaska 99645" },
-  ];
   
 
-const OrderStatusModal = () => {
+const OrderStatusModal = ({ orderStatus }: { orderStatus: DeliveryHistory[] }) => {
 
     return (
         <View style={styles.container}>  

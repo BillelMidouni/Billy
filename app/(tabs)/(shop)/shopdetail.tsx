@@ -3,8 +3,9 @@ import Header from "@/components/home/Header";
 import SearchBar from "@/components/SearchBar";
 import { ThemedView } from "@/components/ThemedView";
 import { padding_horizontal } from "@/constants/Theme";
+import { Store } from "@/core/services/Store";
 import { category } from "@/data/fake";
-import { ProductCategory, Store } from "@/types";
+import { ProductCategory } from "@/types";
 import { useLocalSearchParams } from "expo-router";
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
@@ -13,13 +14,12 @@ import { FlatList, Image, ImageBackground, Text, TouchableOpacity, View } from "
 
 export default function ShopDetailScreen() {
 
-    const params = useLocalSearchParams();
-    const [store, setStore] = React.useState<Store>();
+    const { store } = useLocalSearchParams();
+    
     const [loading, setLoading] = React.useState(true);
     const [products, setProducts] = React.useState<ProductCategory[]>(category); // Ajoutez cette ligne pour les produits
 
     useEffect(() => {
-        setStore(JSON.parse(params.store));
         setLoading(false);
     }, []);
 

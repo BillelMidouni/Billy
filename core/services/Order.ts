@@ -1,5 +1,11 @@
 import firestore from '@react-native-firebase/firestore';
 
+export interface DeliveryHistory {
+  status: string;
+  address: string;
+  location: { latitude: number; longitude: number };
+}
+
 export interface OrderItem {
   productId: string;
   quantity: number;

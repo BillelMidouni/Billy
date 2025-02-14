@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Store } from "@/types";
 import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity } from "react-native";
 import { useRouter } from 'expo-router';
+import { Store } from "@/core/services/Store";
 
 export default function StoreAroundLocation({ storeAroundLocation }: { storeAroundLocation: Store[] }) {
 
