@@ -10,6 +10,7 @@ import PromotedCarousel from '@/components/home/PromotedCarousel';
 import PopularProduct from '@/components/home/PopularProduct';
 import StoreAroundLocation from '@/components/store/StoreAroundLocation';
 import UserHeader from '@/components/home/UserHeader';
+import ChatToggle from '@/components/chat/ChatToggle';
 
 export default function HomeScreen() {
   return (
@@ -24,6 +25,7 @@ export default function HomeScreen() {
             <StoreAroundLocation storeAroundLocation={store} />
         </View>
       </ScrollView>
+
     </ThemedView>
   );
 }

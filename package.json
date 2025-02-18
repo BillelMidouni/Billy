@@ -23,6 +23,8 @@
     "@react-native-firebase/firestore": "^21.0.0",
     "@react-navigation/native": "^6.0.2",
     "@reduxjs/toolkit": "^2.3.0",
+    "@stripe/stripe-react-native": "^0.41.0",
+    "axios": "^1.7.9",
     "expo": "^51.0.39",
     "expo-application": "~5.9.1",
     "expo-constants": "~16.0.2",

@@ -3,10 +3,37 @@ import * as React from "react";
 import {Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 import { useGlobalModal } from "@/components/modal/ModalProvider";
 import FilterModal from "./modal/FilterModal";
+import axios from "axios";
+
+const apiKey = "IeIjvLk3igWzLGA8X5bC3QTUKYDfT5wf"
+
 
 const SearchBar = () => {  	
 
 	const { openModal } = useGlobalModal();
+
+	const search_toggle = async () => {
+		const data = {
+			"model": "mistral-small-latest",
+    		"messages": [{"role": "user", "content": "Who is the most renowned French painter?"}]
+		}
+
+		try {
+			axios({
+				method: 'post',
+				url: 'https://api.mistral.ai/v1/chat/completions',
+				headers: {
+					'Authorization': `Bearer ${apiKey}`,
+					'Content-Type': 'application/json'
+				},
+				data: data
+			  }).then((response) => {
+			});
+
+		}catch (error) {
+			console.log(error)
+		}
+	}
 
   	return (
 		<View style={{flexDirection: "row", justifyContent: "space-between"}}>
@@ -22,7 +49,8 @@ const SearchBar = () => {
 								returnKeyType="search"
 								></TextInput>
         				</View>
-						<TouchableOpacity>
+						<TouchableOpacity
+							onPress={search_toggle}>
         					<Image style={styles.searchIcon} resizeMode="cover" source={require("@/assets/icon/Mic.png")} />
 						</TouchableOpacity>
       			</View>

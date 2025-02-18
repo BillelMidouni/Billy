@@ -14,6 +14,10 @@ const styles = StyleSheet.create({
         flex: 1,
         width: 50,
         height: 50,
+        backgroundColor: "#1A1A1A",
+        position: "absolute",
+        bottom: 20,
+        right: 20,
     }
 });
 

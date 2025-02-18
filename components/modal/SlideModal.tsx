@@ -10,7 +10,7 @@ interface AppModalProps {
   title?: string;
   overlay?: boolean;
   children?: React.ReactNode;
-  callbackOnClose: () => void;
+  callbackOnClose?: () => void;
   onClose: () => void;
 }
 
@@ -31,7 +31,9 @@ const SlideModal: React.FC<AppModalProps> = ({ isVisible, overlay, title, childr
   }, [isVisible]);
 
   const close_with_animation = () => {
-    callbackOnClose();
+    if (callbackOnClose) {
+      callbackOnClose();
+    }
     new Promise((resolve) => {
       translateY.value = withSpring(900, {
         duration: 1000,

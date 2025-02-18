@@ -68,8 +68,8 @@ export default function RootLayout() {
         <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
           <ModalProvider>
             <Stack initialRouteName={"(tabs)"}>
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} /> {/* App part for customer user */}
                 <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
-                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
                 <Stack.Screen name="+not-found" />
             </Stack>
           </ModalProvider>
