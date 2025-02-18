@@ -15,7 +15,7 @@ interface AccountOption {
   
 const accountOptions: AccountOption[] = [
     { title: "My Orders", icon: "cube-outline", route: "myorders" as Href },
-    { title: "My Details", icon: "person-outline", route: "details" as Href },
+    { title: "My Details", icon: "person-outline", route: "mydetails" as Href },
     { title: "Address Book", icon: "home-outline", route: "addresses" as Href },
     { title: "Payment Methods", icon: "card-outline", route: "payments" as Href },
     { title: "Notifications", icon: "notifications-outline", route: "notifications" as Href },

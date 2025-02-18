@@ -23,7 +23,7 @@ export default function StoreAroundLocation({ storeAroundLocation }: { storeArou
                         style={{ width: 150, marginBottom: 10, justifyContent: "center", alignItems: "center"}}
                         onPress={() => router.navigate({
                             "pathname": '/(tabs)/(shop)/shopdetail',
-                            "params": { store: JSON.stringify(item) }
+                            "params": { store: item }
                         })}>
                         <Image source={{ uri: item.logo_image }} style={{ width: 100, height: 100, borderRadius: 10, marginRight: 5, objectFit: "contain" }} />
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>

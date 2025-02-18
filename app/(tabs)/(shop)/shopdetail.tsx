@@ -3,7 +3,6 @@ import Header from "@/components/home/Header";
 import SearchBar from "@/components/SearchBar";
 import { ThemedView } from "@/components/ThemedView";
 import { padding_horizontal } from "@/constants/Theme";
-import { Store } from "@/core/services/Store";
 import { category } from "@/data/fake";
 import { ProductCategory } from "@/types";
 import { useLocalSearchParams } from "expo-router";
@@ -28,11 +27,11 @@ export default function ShopDetailScreen() {
     return (
         loading ? <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}><Text>{t('loading')}</Text></View> :
         <ThemedView style={{flex: 1}}>
-            <Header title={store.name} notification={false} goback={true} />
+            <Header title={store.name} notification={true} goback={true} />
             <View style={{paddingHorizontal: padding_horizontal, flex: 1, gap: 15}}>
                 <SearchBar />
-                <CategoryCarousel categories={category} /> {/* Ajoutez le carrousel de catégories */}
-                <FlatList
+                {/* <CategoryCarousel categories={category} /> Ajoutez le carrousel de catégories */}
+                {/* <FlatList
                     data={products}
                     numColumns={2}
                     keyExtractor={(item) => item.id.toString()}
@@ -46,7 +45,7 @@ export default function ShopDetailScreen() {
                             </ImageBackground>
                         </TouchableOpacity>
                     )}
-                />
+                /> */}
             </View>
         </ThemedView>
     );
