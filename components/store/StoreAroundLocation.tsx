@@ -21,9 +21,9 @@ export default function StoreAroundLocation({ storeAroundLocation }: { storeArou
                 renderItem={({ item }) => (
                     <TouchableOpacity 
                         style={{ width: 150, marginBottom: 10, justifyContent: "center", alignItems: "center"}}
-                        onPress={() => router.navigate({
+                        onPress={() => router.push({
                             "pathname": '/(tabs)/(shop)/shopdetail',
-                            "params": { store: item }
+                            "params": item
                         })}>
                         <Image source={{ uri: item.logo_image }} style={{ width: 100, height: 100, borderRadius: 10, marginRight: 5, objectFit: "contain" }} />
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>

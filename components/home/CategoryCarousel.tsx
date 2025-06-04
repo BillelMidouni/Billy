@@ -3,7 +3,7 @@ import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native
 import { FlatGrid } from 'react-native-super-grid';
 
 import { ProductCategory } from '@/types';
-import ProductCard from '../product/Card';
+import ProductCard from '@/components/product/Card';
 
 export default function CategoryCarousel({
     category,

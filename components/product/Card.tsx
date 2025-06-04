@@ -1,16 +1,59 @@
 import { size_icon } from "@/constants/Theme";
 import * as React from "react";
+import { useRouter } from 'expo-router';
 import {Image, StyleSheet, View, Text, TouchableOpacity} from "react-native";
+import { Product } from "@/types";
 
 const ProductCard = () => {
-  	
+
+	const router = useRouter();
+
+	const product = {
+		id: "1",
+		name: "Regular Fit Slogan",
+		description: "Test description",
+		price: 1190,
+		rate: {
+			average: 4.5,
+			number_review: 3,
+			reviews: {
+				comments: [
+					{
+						id: "1",
+						name: "John Doe",
+						comment: "Great product!",
+						rating: 5,
+					},
+					{
+						id: "2",
+						name: "Jane Smith",
+						comment: "Good quality.",
+						rating: 4,
+					},
+					{
+						id: "3",
+						name: "Alice Johnson",
+						comment: "Not worth the price.",
+						rating: 2,
+					},
+				],
+			}
+		},
+		image: require("@/assets/fake/tshirt_blue.png"),
+	}
+	
   	return (
-		<TouchableOpacity style={styles.productCardHorizontal}>
+		<TouchableOpacity 
+			style={styles.productCardHorizontal}
+			onPress={() => router.push({
+				"pathname": '/(tabs)/(shop)/productdetail',
+				"params": product
+			})}>
 			<View style={[styles.container, styles.containerLayout]}>
 					<Image 
 						style={[styles.imageIcon, styles.containerLayout]} 
 						resizeMode="cover" 
-						source={require("@/assets/fake/tshirt_blue.png")} />
+						source={product.image} />
 					<TouchableOpacity style={styles.activityHeart}>
 						<Image 
 							style={styles.heartIcon} 
@@ -20,8 +63,8 @@ const ProductCard = () => {
 					</TouchableOpacity>
 			</View>
 			<View style={styles.container1}>
-					<Text style={[styles.regularFitSlogan, styles.textTypo]}>Regular Fit Slogan</Text>
-					<Text style={[styles.text, styles.textTypo]}>$ 1,190</Text>
+					<Text style={[styles.regularFitSlogan, styles.textTypo]}>{product.name}</Text>
+					<Text style={[styles.text, styles.textTypo]}>{product.price} €</Text>
 			</View>
 		</TouchableOpacity>
 	);

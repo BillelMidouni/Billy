@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "solly",
-    "slug": "solly",
+    "name": "Hugget",
+    "slug": "hugget",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -14,7 +14,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.solly.app"
+      "bundleIdentifier": "com.hugget.app"
     },
     "android": {
       "adaptiveIcon": {

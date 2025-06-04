@@ -37,7 +37,13 @@ export default function AccountScreen() {
                     renderItem={({ item }) => (
                     <TouchableOpacity
                         style={[styles.optionItem, item.isLogout && styles.logoutItem]}
-                        onPress={() => { item.route && router.push(item.route) }}
+                        onPress={() => { 
+                            if (item.isLogout) {
+                                router.push("/(onboarding)/login") 
+                            } else {
+                                item.route && router.push(item.route) 
+                            }
+                        }}
                         >
                         <View style={styles.optionLeft}>
                             <Ionicons

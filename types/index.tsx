@@ -47,10 +47,39 @@ type PopularProductType = {
     price: string;
 }
 
+type Product = {
+    id: string;
+    name: string;
+    description: string;
+    price: number;
+    image: string;
+    rate: ProductRate
+};
+
+type ProductRate = {
+    id: string;
+    rating: number;
+    number_review: number;
+    review: ProductReview[];
+};
+
+type ProductReview = {
+    rating: number;
+    comment: string;
+    user: {
+        id: string;
+        username: string;
+    };
+    createdAt: string;
+}
+
 export type { 
     UserAuth,
     Store,
+    Product,
     ProductCategory,
     PromotionHighlight,
-    PopularProductType
+    PopularProductType,
+    ProductRate,
+    ProductReview
 };

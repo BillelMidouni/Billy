@@ -4,11 +4,13 @@ import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Header({
+  logo= "",
   title = "",
   notification = true,
   goback = false,
   goBackCallback = () => {},
 }) {
+
   return (
     <View
       style={[
@@ -33,16 +35,21 @@ export default function Header({
           />
         </TouchableOpacity>
       )}
-      <Text
-        style={[
-          styles.title,
-          {
-            // marginLeft: goback && !notification ? 20 : 0,
-          },
-        ]}
-      >
-        {title}
-      </Text>
+      {logo === "" ? <Text
+          style={[
+            styles.title,
+            {
+              // marginLeft: goback && !notification ? 20 : 0,
+            },
+          ]}
+        >
+          {title}
+        </Text>:
+        <Image
+          source={{uri: logo}}
+          style={{ width: 100, height: 50, objectFit: "contain" }}
+        />
+      }
         <TouchableOpacity
           style={{ width: size_icon, height: size_icon, opacity: notification ? 1 : 0 }}
           disabled={!notification}

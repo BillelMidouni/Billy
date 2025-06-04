@@ -13,7 +13,7 @@ import { FlatList, Image, ImageBackground, Text, TouchableOpacity, View } from "
 
 export default function ShopDetailScreen() {
 
-    const { store } = useLocalSearchParams();
+    const store = useLocalSearchParams();
     
     const [loading, setLoading] = React.useState(true);
     const [products, setProducts] = React.useState<ProductCategory[]>(category); // Ajoutez cette ligne pour les produits
@@ -27,10 +27,10 @@ export default function ShopDetailScreen() {
     return (
         loading ? <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}><Text>{t('loading')}</Text></View> :
         <ThemedView style={{flex: 1}}>
-            <Header title={store.name} notification={true} goback={true} />
+            <Header logo={store.logo_image as string} notification={true} goback={true} />
             <View style={{paddingHorizontal: padding_horizontal, flex: 1, gap: 15}}>
                 <SearchBar />
-                {/* <CategoryCarousel categories={category} /> Ajoutez le carrousel de catégories */}
+                
                 {/* <FlatList
                     data={products}
                     numColumns={2}
